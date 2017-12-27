@@ -4,7 +4,8 @@ import './index.css';
 const PlayerSelect = (props) => {
   const { players, selectedPlayerProfile } = props;
   const handleChange = (event) => {
-    window.location.href = '/player/' + event.target.value
+    if (!event.target.value) return;
+    window.location.href = '/player/' + event.target.value;
   }
   return (
     <div className="player-select">
@@ -16,7 +17,7 @@ const PlayerSelect = (props) => {
             onChange={handleChange}
             value={selectedPlayerProfile ? selectedPlayerProfile.player_id : ''}
           >
-            <option>Select a player</option>
+            <option value="">Select a player</option>
             {players.map((player, key) => {
               return <option
                       key={key}
