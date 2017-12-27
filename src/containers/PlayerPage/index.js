@@ -59,7 +59,7 @@ class PlayerPage extends Component {
         </div>
         <div>
           { !data
-            ? <i class="fa fa-circle-o-notch fa-spin" aria-hidden="true"></i>
+            ? <i className="fa fa-circle-o-notch fa-spin" aria-hidden="true"></i>
             : <PlayerTable {...selectedPlayer} />
           }
         </div>
