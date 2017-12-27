@@ -33,10 +33,10 @@ class PlayerPage extends Component {
       const { statistics, players } = data;
 
       const selectedPlayerProfile = players.filter(qb => {
-        return qb.player_id === parseInt(id);
+        return qb.player_id === parseInt(id, 10);
       });
       const selectedPlayerStats = statistics.filter(week => {
-        return week.player_id === parseInt(id);
+        return week.player_id === parseInt(id, 10);
       });
 
       selectedPlayer = {

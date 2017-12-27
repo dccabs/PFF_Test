@@ -7,15 +7,16 @@ const PlayerSelect = (props) => {
     window.location.href = '/player/' + event.target.value
   }
   return (
-    <div class="player-select">
+    <div className="player-select">
       {!players
         ? <span>Loading</span>
         : <select
             name="player-select"
             className="player-select"
             onChange={handleChange}
-            value={selectedPlayerProfile.player_id}
+            value={selectedPlayerProfile ? selectedPlayerProfile.player_id : ''}
           >
+            <option>Select a player</option>
             {players.map((player, key) => {
               return <option
                       key={key}

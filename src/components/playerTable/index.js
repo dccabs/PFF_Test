@@ -3,10 +3,6 @@ import './index.css';
 
 const PlayerTable = (props) => {
   const { selectedPlayerProfile, selectedPlayerStats } = props;
-  const {
-    first_name,
-    last_name
-  } = selectedPlayerProfile;
 
   const weekHeader = <tr>
                       <td>Week</td>
@@ -28,18 +24,16 @@ const PlayerTable = (props) => {
       completions,
       home_team,
       interceptions,
-      on_home_team,
-      player_id,
       touchdowns,
       week,
       yards
     } = selectedPlayerStats[key];
 
     const getCompletionPercentage = () => {
-      const c = parseInt(completions);
-      const a = parseInt(attempts);
+      const c = parseInt(completions, 10);
+      const a = parseInt(attempts, 10);
       const per = c/a * 100;
-      return parseInt(per);
+      return parseInt(per, 10);
     }
 
     const getPasserRating = () => {
@@ -47,9 +41,7 @@ const PlayerTable = (props) => {
       const b = ((yards/attempts) - 3) * .25;
       const c = (touchdowns/attempts) * 20;
       const d = 2.375 - ((interceptions/attempts) * 25);
-      console.log(a, b, c, d, rating);
       const rating = ((a+b+c+d)/6) * 100;
-      console.log(a, b, c, d, rating);
       return rating.toFixed(1);
     }
 
