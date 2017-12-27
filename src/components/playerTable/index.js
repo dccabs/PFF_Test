@@ -1,0 +1,90 @@
+import React from 'react';
+import './index.css';
+
+const PlayerTable = (props) => {
+  const { selectedPlayerProfile, selectedPlayerStats } = props;
+  const {
+    first_name,
+    last_name
+  } = selectedPlayerProfile;
+
+  const weekHeader = <tr>
+                      <td>Week</td>
+                      <td>Home</td>
+                      <td>Away</td>
+                      <td>Completions</td>
+                      <td>Attempts</td>
+                      <td>Comp. %</td>
+                      <td>Yards</td>
+                      <td>TD</td>
+                      <td>Ints</td>
+                      <td>Rating</td>
+                    </tr>;
+
+  const weekRow = key => {
+    const {
+      attempts,
+      away_team,
+      completions,
+      home_team,
+      interceptions,
+      on_home_team,
+      player_id,
+      touchdowns,
+      week,
+      yards
+    } = selectedPlayerStats[key];
+
+    const getCompletionPercentage = () => {
+      const c = parseInt(completions);
+      const a = parseInt(attempts);
+      const per = c/a * 100;
+      return parseInt(per);
+    }
+
+    const getPasserRating = () => {
+      const a = ((completions/attempts) - .3) * 5;
+      const b = ((yards/attempts) - 3) * .25;
+      const c = (touchdowns/attempts) * 20;
+      const d = 2.375 - ((interceptions/attempts) * 25);
+      console.log(a, b, c, d, rating);
+      const rating = ((a+b+c+d)/6) * 100;
+      console.log(a, b, c, d, rating);
+      return rating.toFixed(1);
+    }
+
+
+    return <tr key={key}>
+            <td>{week}</td>
+            <td>{home_team}</td>
+            <td>{away_team}</td>
+            <td>{completions}</td>
+            <td>{attempts}</td>
+            <td>{getCompletionPercentage()}</td>
+            <td>{yards}</td>
+            <td>{touchdowns}</td>
+            <td>{interceptions}</td>
+            <td>{getPasserRating()}</td>
+          </tr>;
+  }
+
+  return (
+    <div>
+      <h3>
+        {selectedPlayerProfile.first_name} {selectedPlayerProfile.last_name} Game By Game Stats
+      </h3>
+      <table className="player-table">
+        <thead className="player-table__header">
+          {weekHeader}
+        </thead>
+        <tbody>
+          {Object.keys(selectedPlayerStats).map(weekIndex => {
+            return weekRow(weekIndex)
+          })}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
+export default PlayerTable

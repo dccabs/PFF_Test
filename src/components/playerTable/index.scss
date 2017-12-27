@@ -1,0 +1,18 @@
+.player-table {
+  margin: auto;
+  tbody {
+    tr:nth-child(odd) {
+      background: #e3e3e3;
+    }
+  }
+
+  td {
+    padding: 20px;
+    vertical-align: top;
+  }
+}
+
+.player-table__header {
+  background: #bbb;
+  color: #fff;
+}
