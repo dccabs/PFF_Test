@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import PlayerTable from '../../components/playerTable'
 import PlayerSelect from '../../components/playerSelect'
+import '../../font-awesome/css/font-awesome.min.css';
+import './index.css';
 
 class PlayerPage extends Component {
   constructor(props) {
@@ -57,7 +59,7 @@ class PlayerPage extends Component {
         </div>
         <div>
           { !data
-            ? <span>loading...</span>
+            ? <i class="fa fa-circle-o-notch fa-spin" aria-hidden="true"></i>
             : <PlayerTable {...selectedPlayer} />
           }
         </div>

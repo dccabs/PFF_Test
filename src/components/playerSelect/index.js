@@ -10,10 +10,10 @@ const PlayerSelect = (props) => {
   return (
     <div className="player-select">
       {!players
-        ? <span>Loading</span>
+        ? null
         : <select
             name="player-select"
-            className="player-select"
+            className="player-select__select"
             onChange={handleChange}
             value={selectedPlayerProfile ? selectedPlayerProfile.player_id : ''}
           >
